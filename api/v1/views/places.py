@@ -5,11 +5,12 @@ from models import storage
 from flask import jsonify, abort, request
 from models.state import State
 from models.city import City
+from models.place import Place
 
 
 @app_views.route('/cities/<city_id>/places',
                  methods=['GET'], strict_slashes=False)
-def get_cityplace(state_id=None):
+def get_cityplace(city_id=None):
     """take places from each city"""
     if storage.get(City, city_id) is None:
         abort(404)
@@ -22,7 +23,7 @@ def get_cityplace(state_id=None):
 @app_views.route('/places/<place_id>', methods=['GET'], strict_slashes=False)
 def get_place(place_id=None):
     """get place object"""
-    if storage.get(Placed, place_id) is None:
+    if storage.get(Place, place_id) is None:
         abort(404)
     else:
         return jsonify(storage.get(Place, place_id).to_dict())
@@ -56,8 +57,8 @@ def post_place(city_id):
     return jsonify(new_place.to_dict()), 201
 
 
-@app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
-def put_place(city_id=None):
+@app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
+def put_place(place_id=None):
     """change place object"""
     if storage.get("Place", place_id) is None:
         abort(404)
