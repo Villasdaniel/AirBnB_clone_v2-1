@@ -51,6 +51,8 @@ def post_place(city_id):
         abort(400, "Not a JSON")
     elif "name" not in request.get_json().keys():
         abort(400, "Missing name")
+    elif "user_id" not in request.get_json().keys():
+        abort(400, "Missing user_id")
     else:
         new_place = Place(**request.get_json())
         storage.save()
