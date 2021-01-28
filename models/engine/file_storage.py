@@ -70,6 +70,7 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
+        """get method"""
         from models import storage
         if cls is None or id is None:
             return None
@@ -79,5 +80,6 @@ class FileStorage:
                     return objeto
 
     def count(self, cls=None):
-            a = len(self.all(cls))
-            return a
+        """count method"""
+        a = len(self.all(cls))
+        return a
