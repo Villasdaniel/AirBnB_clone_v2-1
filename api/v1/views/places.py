@@ -49,7 +49,7 @@ def post_place(city_id):
         abort(404)
     if request.get_json() is None:
         abort(400, "Not a JSON")
-    elif not storage.get("User", place["user_id"]):
+    elif not storage.get("User", request.get_json()["user_id"]):
             abort(404)
     elif "name" not in request.get_json().keys():
         abort(400, "Missing name")
