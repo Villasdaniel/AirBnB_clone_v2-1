@@ -57,7 +57,7 @@ def post_place(city_id):
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
-def put_city(city_id=None):
+def put_place(city_id=None):
     """change place object"""
     if storage.get("Place", place_id) is None:
         abort(404)
