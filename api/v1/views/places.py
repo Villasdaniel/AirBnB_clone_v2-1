@@ -65,7 +65,7 @@ def put_place(place_id=None):
     if request.get_json() is None:
         return "Not a JSON", 400
     for key, value in request.get_json().items():
-        if key in ["id", "city_id", "created_at", "updated_at"]:
+        if key in ["id", "user_id", "city_id", "created_at", "updated_at"]:
             pass
         else:
             setattr(storage.get("Place", place_id), key, value)
