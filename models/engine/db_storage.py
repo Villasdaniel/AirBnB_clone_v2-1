@@ -76,6 +76,7 @@ class DBStorage:
         self.__session.remove()
 
     def get(self, cls, id):
+        """get method"""
         from models import storage
         if cls is None or id is None:
             return None
@@ -85,5 +86,6 @@ class DBStorage:
                     return objeto
 
     def count(self, cls=None):
+        """count method"""
         a = len(self.all(cls))
         return a
