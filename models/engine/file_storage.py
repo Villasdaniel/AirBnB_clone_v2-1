@@ -71,13 +71,13 @@ class FileStorage:
 
     def get(self, cls, id):
         """get method"""
-        from models import storage
-        if cls is None or id is None:
-            return None
-        else:
-            for objeto in storage.all(cls).values():
-                if objeto.id == id:
-                    return objeto
+        if cls and id:
+            dictio = self.all(cls)
+            for key, values in dictio.items():
+                objetos = cls.__name__ + '.' + id
+                if key == objetos:
+                    return dictio[objetos]
+        return None
 
     def count(self, cls=None):
         """count method"""
