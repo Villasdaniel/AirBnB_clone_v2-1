@@ -8,6 +8,7 @@ from models.city import City
 from models.place import Place
 from models.review import Review
 
+
 @app_views.route('/places/<place_id>/reviews',
                  methods=['GET'], strict_slashes=False)
 def get_placereview(place_id=None):
@@ -15,7 +16,7 @@ def get_placereview(place_id=None):
     if storage.get(Place, place_id) is None:
         abort(404)
     placereview = []
-    for pr in storage.get(Place, place_id).places_reviews:
+    for pr in storage.get(Place, place_id).reviews:
         placereview.append(pr.to_dict())
     return jsonify(placereview)
 
@@ -57,6 +58,7 @@ def post_review(place_id):
         abort(400, "Missing text")
     else:
         new_review = Review(**request.get_json())
+        new_review.place_id = place_id
         storage.save()
     return jsonify(new_review.to_dict()), 201
 
