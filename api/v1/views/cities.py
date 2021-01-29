@@ -7,6 +7,9 @@ from models.state import State
 from models.city import City
 
 
+"""it is possible to use decorators to save lines of code"""
+
+
 @app_views.route('/states/<state_id>/cities',
                  methods=['GET'], strict_slashes=False)
 def get_citystate(state_id=None):
